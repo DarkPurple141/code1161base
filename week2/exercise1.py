@@ -11,6 +11,7 @@ import os
 
 
 def usefulFunction():
+    """Function does some stuff."""
     print(os.getcwd())
 
 

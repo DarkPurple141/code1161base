@@ -139,7 +139,7 @@ def loops_4():
     ]
     """
     temp = []
-    for _ in range(8):
+    for _ in range(10):
         temp.append(count(9))
 
     return temp

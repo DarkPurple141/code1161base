@@ -45,6 +45,15 @@ def loops_1a():
     return 10*['*']
 
 
+def star_map_helper(args):
+    """Helper function for star_map."""
+    index, _ = args
+    if not is_odd(index):
+        return '!'
+    else:
+        return '*'
+
+
 def star_map():
     """Use a map to make stars and bangs.
 
@@ -53,10 +62,8 @@ def star_map():
     if it's even. Reuse the is odd function that you've already written.
     E.g.: ["!", "*", "!", "*", "!", "*", "!", "*", "!", "*"]
     """
-    new = loops_1a()
-    for i, _ in enumerate(new):
-        if not is_odd(i):
-            new[i] = '!'
+    new = ['']*10
+    new = map(star_map_helper, enumerate(new))
     return new
 
 
@@ -113,7 +120,7 @@ def loops_3():
     TIP: notice that this needs to to return strings of numbers,
          so call str(number) to cast.
     """
-    pass
+    return [[str(i)]*10 for i in range(10)]
 
 
 def loops_4():
@@ -132,7 +139,7 @@ def loops_4():
     ]
     """
     temp = []
-    for i in range(8):
+    for _ in range(8):
         temp.append(count(9))
 
     return temp
@@ -160,7 +167,14 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    pass
+    returnList = []
+    for i in range(10):
+        temp = []
+        for j in range(5):
+            temp.append('(i{}, j{})'.format(i, j))
+        returnList.append(temp)
+
+    return returnList
 
 
 def loops_6():
@@ -199,16 +213,6 @@ def count(counter):
     return temp
 
 
-def pyramid_helper(args, i):
-    """Helper function for loops_7()."""
-    index, _ = args
-    temp = []
-    for k in range(i):
-        temp.append(str(i))
-
-    return temp
-
-
 def loops_7():
     """Make a pyramid.
 
@@ -230,7 +234,15 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    return [map(pyramid_helper, i, enumerate([' ']*9)) for i in range(5)]
+    temp = []
+    for i in range(5):
+        new = [' ']*9
+        for j, _ in enumerate(new):
+            if j >= 4-i and j <= 4+i:
+                new[j] = '*'
+
+        temp.append(new)
+    return temp
 
 
 def lp(some_kind_of_list, exercise_name):

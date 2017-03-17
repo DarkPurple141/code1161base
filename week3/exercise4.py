@@ -5,6 +5,8 @@ from __future__ import print_function
 import math
 # import time
 
+d = {"guess": [], "tries": 0}
+
 
 def binary_search(low, high, actual_number):
     """Do a binary search.
@@ -27,7 +29,25 @@ def binary_search(low, high, actual_number):
       (You should remove them from the file, not comment them out, the
       tests aren't that smart yet.)
     """
-    pass
+    if low > high:
+        return
+
+    if low == actual_number:
+        return d
+    elif high == actual_number:
+        return d
+
+    mid = low + int((high - low)/2)
+    d['guess'].append(mid)
+    d['tries'] += 1
+
+    if mid == actual_number:
+        return d
+    else:
+        if mid < actual_number:
+            return binary_search(mid+1, high, actual_number)
+        else:
+            return binary_search(low, mid-1, actual_number)
 
 
 if __name__ == "__main__":
